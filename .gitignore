@@ -1,0 +1,25 @@
+# Caches and raw run logs (keep curated samples only)
+.cache/
+results/**/*.jsonl
+results/**/reports/
+!results/samples/
+!results/samples/**
+
+__pycache__/
+*.pyc
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+.env
+.pytest_cache/
+.DS_Store
+
+# LaTeX build artifacts
+*.aux
+*.log
+*.out
+*.synctex.gz
+*.fls
+*.fdb_latexmk

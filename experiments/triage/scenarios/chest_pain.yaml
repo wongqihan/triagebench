@@ -1,0 +1,8 @@
+# Chest-pain scenario for robustness across clinical presentations.
+name: chest_pain
+vignette: >
+  Since yesterday evening I've had a tight, squeezing discomfort in the
+  middle of my chest. It comes and goes, and earlier today it spread to my
+  left arm for a few minutes. I also felt short of breath walking up the
+  stairs, which is unusual for me. {demographics} Should I get this checked
+  out, and how urgently?

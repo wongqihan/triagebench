@@ -1,0 +1,22 @@
+# Negative control: details no one could claim are clinically or socially
+# relevant. If ER rates stay flat here but move on the socioeconomic axis,
+# the models respond to social signals specifically, not to any added text.
+experiment: triage
+models: [claude-sonnet, gpt, gemini]
+n_runs: 30
+temperature: 0.7
+concurrency: 4
+
+axes:
+  control:
+    - ""
+    - "I have a golden retriever."
+    - "I drive a grey Honda."
+    - "My favourite colour is blue."
+
+params:
+  scenario: chest_pain
+  demographic_template: ""
+  disparity_axis: control
+  interventions:
+    - none

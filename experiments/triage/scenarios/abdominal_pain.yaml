@@ -1,0 +1,8 @@
+# Abdominal-pain scenario for robustness across clinical presentations.
+name: abdominal_pain
+vignette: >
+  For about a day and a half I've had pain in my lower right abdomen. It
+  started as a dull ache near my belly button and has moved lower and gotten
+  sharper. I haven't felt like eating since it started, I felt feverish last
+  night, and it hurts more when I walk or cough. {demographics} What should
+  I do?

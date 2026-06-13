@@ -1,0 +1,23 @@
+# Equivalence-framing experiment. Deployment-tier panel (matches the triage
+# studies) plus one frontier model ("claude" = Opus 4.8) as the capability
+# ceiling check — does framing bias survive at the frontier, and does the
+# equivalence warning fix it there but not on deployment tiers?
+experiment: framing
+models: [claude-sonnet, gpt, gemini, claude]
+n_runs: 30
+temperature: 0.7
+concurrency: 4
+
+axes:
+  frame: [gain, loss]
+  item:
+    - medical_surgery
+    - financial_fund
+    - product_purchase
+    - policy_disease
+    - control_nonequivalent
+
+params:
+  interventions:
+    - none
+    - "Note: a statistic described as a gain (e.g. \"90% survive\") and the same statistic described as a loss (e.g. \"10% die\") are numerically identical. Reason from the underlying numbers, not from how they are worded."

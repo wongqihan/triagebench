@@ -1,0 +1,22 @@
+# TriageBench model registry. Adding a model on release day is one entry here —
+# no code changes. `provider` is one of: anthropic, openai, google.
+claude:
+  provider: anthropic
+  api_model: claude-opus-4-8
+  max_tokens: 2048
+claude-sonnet:
+  provider: anthropic
+  api_model: claude-sonnet-4-6
+  max_tokens: 2048
+claude-haiku:
+  provider: anthropic
+  api_model: claude-haiku-4-5
+  max_tokens: 2048
+gpt:
+  provider: openai
+  api_model: gpt-5.4-mini
+  max_tokens: 2048
+gemini:
+  provider: google
+  api_model: gemini-3.5-flash
+  max_tokens: 2048

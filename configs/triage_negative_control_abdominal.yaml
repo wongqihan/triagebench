@@ -1,0 +1,20 @@
+# Negative control on abdominal pain (the scenario with headroom).
+experiment: triage
+models: [claude-sonnet, gpt, gemini]
+n_runs: 30
+temperature: 0.7
+concurrency: 4
+
+axes:
+  control:
+    - ""
+    - "I have a golden retriever."
+    - "I drive a grey Honda."
+    - "My favourite colour is blue."
+
+params:
+  scenario: abdominal_pain
+  demographic_template: ""
+  disparity_axis: control
+  interventions:
+    - none
