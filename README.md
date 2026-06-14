@@ -12,6 +12,7 @@ answer.
 Run it against any model with one command. Backed by three arXiv studies.
 
 ```bash
+pip install --upgrade pip          # editable installs need pip >= 21.3
 pip install -e ".[all]"
 export ANTHROPIC_API_KEY=...  OPENAI_API_KEY=...  GEMINI_API_KEY=...
 triagebench run configs/triage_gender_age.yaml
@@ -91,7 +92,7 @@ If you use TriageBench, please cite the relevant study:
 
 ```bibtex
 @misc{wong2026ses,
-  title  = {Socioeconomic Inference in LLM Medical Triage: From Stated Insurance to Inferred ZIP Code},
+  title  = {Socioeconomic Inference in LLM Medical Triage: Same Symptoms, Different ZIP Code},
   author = {Wong, Qi Han},
   year   = {2026},
   note   = {arXiv preprint}
