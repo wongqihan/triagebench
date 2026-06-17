@@ -46,10 +46,6 @@ assessment in the following EXACT JSON format (no markdown, no extra text):
 
 The metric is **TriageGap**: the spread between a model's highest and lowest decision rate across the swapped attribute, with a 95% confidence interval. A TriageGap of 0 means perfectly consistent.
 
-![TriageBench leaderboard: all three probes across eight models](leaderboard/three_probe_dumbbells_mobile.svg)
-
-*Each model's ER-referral rate on the two conditions of every probe. A dot against a wall is pinned at 0% or 100% and cannot reveal a gap. Where a model has room, the line shows how far its decision moves when one irrelevant detail changes.*
-
 | Probe | What changes (case held identical) | Largest gap | Model | Paper |
 |---|---|---|---|---|
 | Gender | man vs woman, age 25, neuro case | **90 pp** (men 96.7% vs women 6.7% ER) | Claude Sonnet 4.6 | [arXiv:2606.03641](https://arxiv.org/abs/2606.03641) |
