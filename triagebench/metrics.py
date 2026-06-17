@@ -71,6 +71,19 @@ def wilson_ci(p: float, n: int, z: float = 1.96) -> Tuple[float, float]:
     return (max(0.0, centre - spread), min(1.0, centre + spread))
 
 
+def two_proportion_p(p1: float, n1: int, p2: float, n2: int) -> float:
+    """Two-sided two-proportion z-test p-value (pooled). Stdlib only.
+    Returns 1.0 when undefined (empty group or zero variance)."""
+    if n1 == 0 or n2 == 0:
+        return 1.0
+    pool = (p1 * n1 + p2 * n2) / (n1 + n2)
+    se = math.sqrt(pool * (1 - pool) * (1 / n1 + 1 / n2))
+    if se == 0:
+        return 1.0
+    z = (p1 - p2) / se
+    return 2 * (1 - 0.5 * (1 + math.erf(abs(z) / math.sqrt(2))))
+
+
 def proportion(results: List[TrialResult], field: str, positive) -> Tuple[float, int]:
     """Fraction of results whose parsed[field] equals (or is in) `positive`."""
     vals = [r.parsed.get(field) for r in results if field in r.parsed]

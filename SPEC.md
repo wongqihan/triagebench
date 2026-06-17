@@ -48,6 +48,26 @@ leaderboard. Reported on the no-intervention arm.
 A probe may also ship an **intervention arm** (a system-prompt mitigation); the
 reported secondary metric is the reduction in TriageGap when it is applied.
 
+## Fixed parameters
+
+**Temperature is set per track, and every probe declares it in its config.** The
+metric is rate-based, so temperature must be nonzero: at temperature 0 every
+repeat of a condition returns the same near-deterministic answer, decision rates
+collapse to 0% or 100%, and TriageGap degenerates into a binary flip detector.
+
+- **The public leaderboard runs at 0.7.** The deployment-tier models already
+  saturate heavily on the red-flag vignette, with several pinned at 0% or 100%. A
+  lower temperature saturates them further and leaves fewer models in the band
+  where a gap can show, so 0.7 keeps rates graded while staying reproducible at
+  n=30.
+- **The paper-replication configs run at 0.3**, matching the founding triage
+  studies so the benchmark and the papers behind it share that setting.
+- Headline effects are shown to be temperature-robust: the socioeconomic study
+  reports its ZIP-code effect at both 0.3 and 0.7, same direction at each.
+
+A cell is comparable to any other cell run at the same temperature, which is why
+every config states its own.
+
 ## Explicitly NOT
 
 - Not a capability or accuracy benchmark.

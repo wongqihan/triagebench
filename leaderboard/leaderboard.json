@@ -1,0 +1,344 @@
+{
+  "benchmark": "TriageBench",
+  "snapshot_date": "2026-06-15",
+  "metric": "TriageGap",
+  "metric_definition": "max-min spread of the decision rate across the swapped axis; 0 = invariant",
+  "rows": [
+    {
+      "model": "claude-haiku-4-5",
+      "probe": "triage_neuro_language",
+      "domain": "clinical",
+      "axis": "language",
+      "ceteris_gap": 0.0,
+      "ci": [
+        0.0,
+        0.1135
+      ],
+      "p_value": 1.0,
+      "n_per_level": 30,
+      "config": "triage_language"
+    },
+    {
+      "model": "claude-opus-4-8",
+      "probe": "triage_neuro_language",
+      "domain": "clinical",
+      "axis": "language",
+      "ceteris_gap": 0.5,
+      "ci": [
+        0.3315,
+        0.6685
+      ],
+      "p_value": 1e-05,
+      "n_per_level": 30,
+      "config": "triage_language"
+    },
+    {
+      "model": "deepseek-v4-flash",
+      "probe": "triage_neuro_language",
+      "domain": "clinical",
+      "axis": "language",
+      "ceteris_gap": 0.0333,
+      "ci": [
+        0.0059,
+        0.1667
+      ],
+      "p_value": 0.31324,
+      "n_per_level": 30,
+      "config": "triage_language"
+    },
+    {
+      "model": "deepseek-v4-pro",
+      "probe": "triage_neuro_language",
+      "domain": "clinical",
+      "axis": "language",
+      "ceteris_gap": 0.2667,
+      "ci": [
+        0.1418,
+        0.4445
+      ],
+      "p_value": 0.02846,
+      "n_per_level": 30,
+      "config": "triage_language"
+    },
+    {
+      "model": "gemini-3.1-flash-lite",
+      "probe": "triage_neuro_language",
+      "domain": "clinical",
+      "axis": "language",
+      "ceteris_gap": 0.0333,
+      "ci": [
+        0.0059,
+        0.1667
+      ],
+      "p_value": 0.31324,
+      "n_per_level": 30,
+      "config": "triage_language"
+    },
+    {
+      "model": "gemini-3.1-pro-preview",
+      "probe": "triage_neuro_language",
+      "domain": "clinical",
+      "axis": "language",
+      "ceteris_gap": 0.0,
+      "ci": [
+        0.0,
+        0.1135
+      ],
+      "p_value": 1.0,
+      "n_per_level": 30,
+      "config": "triage_language"
+    },
+    {
+      "model": "gpt-5.4-nano",
+      "probe": "triage_neuro_language",
+      "domain": "clinical",
+      "axis": "language",
+      "ceteris_gap": 0.4667,
+      "ci": [
+        0.3023,
+        0.6386
+      ],
+      "p_value": 0.00022,
+      "n_per_level": 30,
+      "config": "triage_language"
+    },
+    {
+      "model": "gpt-5.5",
+      "probe": "triage_neuro_language",
+      "domain": "clinical",
+      "axis": "language",
+      "ceteris_gap": 0.0,
+      "ci": [
+        0.0,
+        0.1135
+      ],
+      "p_value": 1.0,
+      "n_per_level": 30,
+      "config": "triage_language"
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "probe": "triage_neuro_sex",
+      "domain": "clinical",
+      "axis": "sex",
+      "ceteris_gap": 0.0,
+      "ci": [
+        0.0,
+        0.1135
+      ],
+      "p_value": 1.0,
+      "n_per_level": 30,
+      "config": "triage_gender_lite"
+    },
+    {
+      "model": "claude-opus-4-8",
+      "probe": "triage_neuro_sex",
+      "domain": "clinical",
+      "axis": "sex",
+      "ceteris_gap": 0.3,
+      "ci": [
+        0.1666,
+        0.4788
+      ],
+      "p_value": 0.0048,
+      "n_per_level": 30,
+      "config": "triage_gender_lite"
+    },
+    {
+      "model": "deepseek-v4-flash",
+      "probe": "triage_neuro_sex",
+      "domain": "clinical",
+      "axis": "sex",
+      "ceteris_gap": 0.0667,
+      "ci": [
+        0.0185,
+        0.2132
+      ],
+      "p_value": 0.58388,
+      "n_per_level": 30,
+      "config": "triage_gender_lite"
+    },
+    {
+      "model": "deepseek-v4-pro",
+      "probe": "triage_neuro_sex",
+      "domain": "clinical",
+      "axis": "sex",
+      "ceteris_gap": 0.2333,
+      "ci": [
+        0.1179,
+        0.4093
+      ],
+      "p_value": 0.01952,
+      "n_per_level": 30,
+      "config": "triage_gender_lite"
+    },
+    {
+      "model": "gemini-3.1-flash-lite",
+      "probe": "triage_neuro_sex",
+      "domain": "clinical",
+      "axis": "sex",
+      "ceteris_gap": 0.0,
+      "ci": [
+        0.0,
+        0.1135
+      ],
+      "p_value": 1.0,
+      "n_per_level": 30,
+      "config": "triage_gender_lite"
+    },
+    {
+      "model": "gemini-3.1-pro-preview",
+      "probe": "triage_neuro_sex",
+      "domain": "clinical",
+      "axis": "sex",
+      "ceteris_gap": 0.0,
+      "ci": [
+        0.0,
+        0.1135
+      ],
+      "p_value": 1.0,
+      "n_per_level": 30,
+      "config": "triage_gender_lite"
+    },
+    {
+      "model": "gpt-5.4-nano",
+      "probe": "triage_neuro_sex",
+      "domain": "clinical",
+      "axis": "sex",
+      "ceteris_gap": 0.3333,
+      "ci": [
+        0.1923,
+        0.5122
+      ],
+      "p_value": 0.00617,
+      "n_per_level": 30,
+      "config": "triage_gender_lite"
+    },
+    {
+      "model": "gpt-5.5",
+      "probe": "triage_neuro_sex",
+      "domain": "clinical",
+      "axis": "sex",
+      "ceteris_gap": 0.0,
+      "ci": [
+        0.0,
+        0.1135
+      ],
+      "p_value": 1.0,
+      "n_per_level": 30,
+      "config": "triage_gender_lite"
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "probe": "triage_neuro_zipcode",
+      "domain": "clinical",
+      "axis": "zipcode",
+      "ceteris_gap": 0.0,
+      "ci": [
+        0.0,
+        0.1135
+      ],
+      "p_value": 1.0,
+      "n_per_level": 30,
+      "config": "triage_ses_lite"
+    },
+    {
+      "model": "claude-opus-4-8",
+      "probe": "triage_neuro_zipcode",
+      "domain": "clinical",
+      "axis": "zipcode",
+      "ceteris_gap": 0.0,
+      "ci": [
+        0.0,
+        0.1135
+      ],
+      "p_value": 1.0,
+      "n_per_level": 30,
+      "config": "triage_ses_lite"
+    },
+    {
+      "model": "deepseek-v4-flash",
+      "probe": "triage_neuro_zipcode",
+      "domain": "clinical",
+      "axis": "zipcode",
+      "ceteris_gap": 0.069,
+      "ci": [
+        0.0191,
+        0.2196
+      ],
+      "p_value": 0.14336,
+      "n_per_level": 29,
+      "config": "triage_ses_lite"
+    },
+    {
+      "model": "deepseek-v4-pro",
+      "probe": "triage_neuro_zipcode",
+      "domain": "clinical",
+      "axis": "zipcode",
+      "ceteris_gap": 0.0667,
+      "ci": [
+        0.0185,
+        0.2132
+      ],
+      "p_value": 0.57314,
+      "n_per_level": 30,
+      "config": "triage_ses_lite"
+    },
+    {
+      "model": "gemini-3.1-flash-lite",
+      "probe": "triage_neuro_zipcode",
+      "domain": "clinical",
+      "axis": "zipcode",
+      "ceteris_gap": 0.0333,
+      "ci": [
+        0.0059,
+        0.1667
+      ],
+      "p_value": 0.55362,
+      "n_per_level": 30,
+      "config": "triage_ses_lite"
+    },
+    {
+      "model": "gemini-3.1-pro-preview",
+      "probe": "triage_neuro_zipcode",
+      "domain": "clinical",
+      "axis": "zipcode",
+      "ceteris_gap": 0.0,
+      "ci": [
+        0.0,
+        0.1135
+      ],
+      "p_value": 1.0,
+      "n_per_level": 30,
+      "config": "triage_ses_lite"
+    },
+    {
+      "model": "gpt-5.4-nano",
+      "probe": "triage_neuro_zipcode",
+      "domain": "clinical",
+      "axis": "zipcode",
+      "ceteris_gap": 0.1333,
+      "ci": [
+        0.0531,
+        0.2968
+      ],
+      "p_value": 0.22211,
+      "n_per_level": 30,
+      "config": "triage_ses_lite"
+    },
+    {
+      "model": "gpt-5.5",
+      "probe": "triage_neuro_zipcode",
+      "domain": "clinical",
+      "axis": "zipcode",
+      "ceteris_gap": 0.0,
+      "ci": [
+        0.0,
+        0.1135
+      ],
+      "p_value": 1.0,
+      "n_per_level": 30,
+      "config": "triage_ses_lite"
+    }
+  ]
+}

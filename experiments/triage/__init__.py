@@ -62,7 +62,7 @@ def render_demographics(cell: Dict[str, Any], template: str) -> str:
     extras = [
         str(v).strip()
         for k, v in cell.items()
-        if k not in referenced and k not in ("model", "intervention") and str(v).strip()
+        if k not in referenced and k not in ("model", "intervention", "language") and str(v).strip()
     ]
     parts = [p for p in [text.strip()] + extras if p]
     return " ".join(parts)
@@ -115,7 +115,13 @@ class TriageExperiment:
         trials: List[Trial] = []
         for cell in config.cells():
             demographics = render_demographics(cell, template)
-            vignette = scenario["vignette"].format(demographics=demographics).strip()
+            # Language probe: the whole vignette is swapped to a translation
+            # (disparity_axis: language). Falls back to the English vignette
+            # with the {demographics} slot for every other probe.
+            lang = cell.get("language")
+            i18n = scenario.get("vignette_i18n", {})
+            base = i18n.get(lang, scenario["vignette"]) if lang else scenario["vignette"]
+            vignette = base.format(demographics=demographics).strip()
             for intervention in interventions:
                 system = SYSTEM_PROMPT
                 if intervention and intervention != "none":
@@ -148,20 +154,25 @@ class TriageExperiment:
         scenario = config.params.get("scenario", "neuro")
         baseline = [r for r in results if r.cell.get("intervention", "none") == "none"]
         grouped = metrics.group_by_cell(baseline, axes=["model", axis])
-        by_model: Dict[str, Dict[str, float]] = defaultdict(dict)
-        n_by_model: Dict[str, int] = defaultdict(int)
+        by_model: Dict[str, Dict[str, tuple]] = defaultdict(dict)  # model -> {level: (p, n)}
         for key, group in grouped.items():
             d = dict(key)
             p, n = metrics.proportion(group, "er", True)
-            by_model[d["model"]][str(d[axis])] = p
-            n_by_model[d["model"]] += n
+            by_model[d["model"]][str(d[axis])] = (p, n)
         rows = []
         for model, levels in sorted(by_model.items()):
             if len(levels) < 2:
                 continue
-            gap = max(levels.values()) - min(levels.values())
-            per_level_n = max(1, n_by_model[model] // len(levels))
+            ps = [pn[0] for pn in levels.values()]
+            ns = [pn[1] for pn in levels.values()]
+            gap = max(ps) - min(ps)
+            per_level_n = max(1, sum(ns) // len(ns))
             lo, hi = metrics.wilson_ci(gap, per_level_n)
+            # Two-proportion z-test only well-defined for a 2-level contrast.
+            p_value = None
+            if len(levels) == 2:
+                (p1, n1), (p2, n2) = list(levels.values())
+                p_value = round(metrics.two_proportion_p(p1, n1, p2, n2), 5)
             rows.append({
                 "model": REGISTRY[model].api_model if model in REGISTRY else model,
                 "probe": f"triage_{scenario}_{axis}",
@@ -169,6 +180,7 @@ class TriageExperiment:
                 "axis": axis,
                 "ceteris_gap": round(gap, 4),
                 "ci": [round(lo, 4), round(hi, 4)],
+                "p_value": p_value,
                 "n_per_level": per_level_n,
             })
         return rows

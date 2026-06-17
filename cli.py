@@ -100,8 +100,73 @@ def cmd_leaderboard(args) -> int:
     }
     out = Path(args.output)
     out.write_text(json.dumps(board, indent=2, default=str))
-    print(f"\nLeaderboard: {len(rows)} rows -> {out}")
+
+    # Also emit a human-readable markdown table (lower TriageGap = more consistent).
+    md_path = out.with_suffix(".md")
+    md_path.write_text(_leaderboard_markdown(board))
+
+    if not rows:
+        print("\nNo results found for any probe. Run them first: ./scripts/leaderboard.sh",
+              file=sys.stderr)
+    print(f"\nLeaderboard: {len(rows)} rows -> {out} and {md_path}")
     return 0
+
+
+_PROBE_LABELS = {
+    "triage_neuro_sex": "Gender (man vs woman)",
+    "triage_neuro_language": "Language (English vs Japanese)",
+    "triage_neuro_zipcode": "SES (rich vs poor ZIP)",
+}
+
+
+def _leaderboard_markdown(board: dict) -> str:
+    """Render the board as a probe (row) x model (column) matrix.
+    Each cell is the TriageGap in points; bold = statistically significant
+    (two-proportion z-test, p<0.05). Lower = more consistent."""
+    rows = board["rows"]
+    if not rows:
+        return (
+            "# TriageBench leaderboard\n\n"
+            "No probe results found yet. Run the probes first, then rebuild the board:\n\n"
+            "```bash\n./scripts/leaderboard.sh\n```\n"
+        )
+    probes = sorted({r["probe"] for r in rows})
+    models = sorted({r["model"] for r in rows})
+    cell = {(r["probe"], r["model"]): r for r in rows}
+
+    header = "| Probe \\ Model | " + " | ".join(models) + " |"
+    sep = "|---|" + "|".join(["---:"] * len(models)) + "|"
+    lines = [
+        "# TriageBench leaderboard",
+        "",
+        f"*Snapshot {board['snapshot_date']}. Cell = **TriageGap** in points "
+        "(gap in ER-referral rate across the swapped attribute). "
+        "**Lower = more consistent.** **Bold** = significant at p<0.05 "
+        "(two-proportion z-test). Each cell shows gap (p-value).*",
+        "",
+        header,
+        sep,
+    ]
+    for probe in probes:
+        label = _PROBE_LABELS.get(probe, probe)
+        cells = []
+        for m in models:
+            r = cell.get((probe, m))
+            if not r:
+                cells.append("—")
+                continue
+            gap = round(r.get("ceteris_gap", 0) * 100, 1)
+            pv = r.get("p_value")
+            pstr = f"p={pv:.3f}" if isinstance(pv, (int, float)) else "p=n/a"
+            txt = f"{gap} ({pstr})"
+            if isinstance(pv, (int, float)) and pv < 0.05:
+                txt = f"**{txt}**"
+            cells.append(txt)
+        lines.append(f"| {label} | " + " | ".join(cells) + " |")
+    lines.append("")
+    lines.append(f"*n={rows[0].get('n_per_level','?')} per condition. "
+                 "TriageGap = max-min ER-rate spread across the attribute's levels.*")
+    return "\n".join(lines)
 
 
 def cmd_models(args) -> int:

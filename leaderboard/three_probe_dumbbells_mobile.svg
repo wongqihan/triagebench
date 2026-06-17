@@ -1,0 +1,63 @@
+<svg viewBox="0 0 1080 1350" xmlns="http://www.w3.org/2000/svg" role="img" font-family="Helvetica Neue, Arial, sans-serif">
+<title>Eight AI doctors on one emergency, three biases</title>
+<desc>ER referral rate per model on gender, language and SES probes; most models pinned at 0 or 100 percent.</desc>
+<rect x="0" y="0" width="1080" height="1350" fill="#FAF7F2"/>
+
+<text x="40" y="74" font-size="46" font-weight="800" fill="#111827">Same emergency, 0% to 100%</text>
+<text x="40" y="116" font-size="22" font-weight="500" fill="#6B7280">8 AI doctors, one identical case. Dot at a wall = pinned.</text>
+<circle cx="52" cy="156" r="9" fill="#6B7280"/><text x="68" y="162" font-size="18" fill="#6B7280">man · English · rich ZIP</text>
+<circle cx="430" cy="156" r="9" fill="#B91C1C"/><text x="446" y="162" font-size="18" fill="#6B7280">woman · Japanese · poor ZIP</text>
+
+<rect x="310" y="225" width="740" height="293" fill="#000000" opacity="0.04"/>
+<rect x="310" y="578" width="740" height="293" fill="#000000" opacity="0.04"/>
+<rect x="310" y="930" width="740" height="293" fill="#000000" opacity="0.04"/>
+<g stroke="#C9C2B6" stroke-width="1.5" stroke-dasharray="3 5">
+<line x1="472" y1="225" x2="472" y2="518"/><line x1="898" y1="225" x2="898" y2="518"/>
+<line x1="472" y1="578" x2="472" y2="871"/><line x1="898" y1="578" x2="898" y2="871"/>
+<line x1="472" y1="930" x2="472" y2="1223"/><line x1="898" y1="930" x2="898" y2="1223"/>
+</g>
+
+<text x="40" y="210" font-size="23" font-weight="800" fill="#111827">GENDER <tspan font-weight="500" fill="#9CA3AF" font-size="18">· man vs woman</tspan></text>
+<text x="40" y="563" font-size="23" font-weight="800" fill="#111827">LANGUAGE <tspan font-weight="500" fill="#9CA3AF" font-size="18">· English vs Japanese</tspan></text>
+<text x="40" y="915" font-size="23" font-weight="800" fill="#111827">SES <tspan font-weight="500" fill="#9CA3AF" font-size="18">· rich vs poor ZIP</tspan></text>
+
+<g font-size="19" font-weight="600" fill="#111827" text-anchor="end">
+<text x="300" y="251">Gemini Pro</text><text x="300" y="287">GPT-5.5</text><text x="300" y="323">Gem Flash-Lite</text><text x="300" y="359">DeepSeek Flash</text><text x="300" y="395">GPT-nano</text><text x="300" y="431">Opus 4.8</text><text x="300" y="467">DeepSeek Pro</text><text x="300" y="503">Haiku</text>
+<text x="300" y="604">Gemini Pro</text><text x="300" y="640">GPT-5.5</text><text x="300" y="676">Gem Flash-Lite</text><text x="300" y="712">DeepSeek Flash</text><text x="300" y="748">GPT-nano</text><text x="300" y="784">Opus 4.8</text><text x="300" y="820">DeepSeek Pro</text><text x="300" y="856">Haiku</text>
+<text x="300" y="956">Gemini Pro</text><text x="300" y="992">GPT-5.5</text><text x="300" y="1028">Gem Flash-Lite</text><text x="300" y="1064">DeepSeek Flash</text><text x="300" y="1100">GPT-nano</text><text x="300" y="1136">Opus 4.8</text><text x="300" y="1172">DeepSeek Pro</text><text x="300" y="1208">Haiku</text>
+</g>
+
+<g stroke="#9a9488" stroke-width="3">
+<line x1="777" y1="353" x2="827" y2="353"/><line x1="451" y1="389" x2="685" y2="389"/><line x1="380" y1="425" x2="593" y2="425"/><line x1="380" y1="461" x2="543" y2="461"/>
+<line x1="1019" y1="676" x2="1040" y2="676"/><line x1="1019" y1="712" x2="1040" y2="712"/><line x1="451" y1="748" x2="777" y2="748"/><line x1="685" y1="784" x2="1040" y2="784"/><line x1="472" y1="820" x2="664" y2="820"/>
+<line x1="990" y1="1028" x2="1019" y2="1028"/><line x1="990" y1="1064" x2="1040" y2="1064"/><line x1="827" y1="1100" x2="919" y2="1100"/><line x1="522" y1="1172" x2="564" y2="1172"/>
+</g>
+
+<g>
+<circle cx="1040" cy="245" r="8" fill="#6B7280"/><circle cx="1040" cy="245" r="8" fill="#B91C1C" opacity="0.5"/><circle cx="1040" cy="281" r="8" fill="#6B7280"/><circle cx="1040" cy="281" r="8" fill="#B91C1C" opacity="0.5"/><circle cx="1040" cy="317" r="8" fill="#6B7280"/><circle cx="1040" cy="317" r="8" fill="#B91C1C" opacity="0.5"/>
+<circle cx="777" cy="353" r="8" fill="#6B7280"/><circle cx="827" cy="353" r="8" fill="#B91C1C"/>
+<circle cx="685" cy="389" r="8" fill="#6B7280"/><circle cx="451" cy="389" r="8" fill="#B91C1C"/>
+<circle cx="593" cy="425" r="8" fill="#6B7280"/><circle cx="380" cy="425" r="8" fill="#B91C1C"/>
+<circle cx="543" cy="461" r="8" fill="#6B7280"/><circle cx="380" cy="461" r="8" fill="#B91C1C"/>
+<circle cx="330" cy="497" r="8" fill="#6B7280"/><circle cx="330" cy="497" r="8" fill="#B91C1C" opacity="0.5"/>
+<circle cx="1040" cy="598" r="8" fill="#6B7280"/><circle cx="1040" cy="598" r="8" fill="#B91C1C" opacity="0.5"/><circle cx="1040" cy="634" r="8" fill="#6B7280"/><circle cx="1040" cy="634" r="8" fill="#B91C1C" opacity="0.5"/>
+<circle cx="1019" cy="676" r="8" fill="#6B7280"/><circle cx="1040" cy="676" r="8" fill="#B91C1C"/><circle cx="1019" cy="712" r="8" fill="#6B7280"/><circle cx="1040" cy="712" r="8" fill="#B91C1C"/>
+<circle cx="451" cy="748" r="8" fill="#6B7280"/><circle cx="777" cy="748" r="8" fill="#B91C1C"/>
+<circle cx="685" cy="784" r="8" fill="#6B7280"/><circle cx="1040" cy="784" r="8" fill="#B91C1C"/>
+<circle cx="472" cy="820" r="8" fill="#6B7280"/><circle cx="664" cy="820" r="8" fill="#B91C1C"/>
+<circle cx="330" cy="856" r="8" fill="#6B7280"/><circle cx="330" cy="856" r="8" fill="#B91C1C" opacity="0.5"/>
+<circle cx="1040" cy="950" r="8" fill="#6B7280"/><circle cx="1040" cy="950" r="8" fill="#B91C1C" opacity="0.5"/><circle cx="1040" cy="986" r="8" fill="#6B7280"/><circle cx="1040" cy="986" r="8" fill="#B91C1C" opacity="0.5"/>
+<circle cx="990" cy="1028" r="8" fill="#6B7280"/><circle cx="1019" cy="1028" r="8" fill="#B91C1C"/><circle cx="1040" cy="1064" r="8" fill="#6B7280"/><circle cx="990" cy="1064" r="8" fill="#B91C1C"/>
+<circle cx="919" cy="1100" r="8" fill="#6B7280"/><circle cx="827" cy="1100" r="8" fill="#B91C1C"/>
+<circle cx="1040" cy="1136" r="8" fill="#6B7280"/><circle cx="1040" cy="1136" r="8" fill="#B91C1C" opacity="0.5"/>
+<circle cx="564" cy="1172" r="8" fill="#6B7280"/><circle cx="522" cy="1172" r="8" fill="#B91C1C"/>
+<circle cx="330" cy="1208" r="8" fill="#6B7280"/><circle cx="330" cy="1208" r="8" fill="#B91C1C" opacity="0.5"/>
+</g>
+
+<g font-size="15" fill="#9CA3AF" text-anchor="middle">
+<text x="330" y="1245">0%</text><text x="685" y="1245">50%</text><text x="1040" y="1245">100% ER</text>
+</g>
+
+<text x="40" y="1292" font-size="20" font-weight="700" fill="#B91C1C">Pinned models can't reveal bias. Where models have room, they bend.</text>
+<text x="40" y="1322" font-size="16" font-weight="500" fill="#9CA3AF">TriageBench · neuro vignette · n=30 per condition · dashed = 20–80% detectable band</text>
+</svg>

@@ -1,0 +1,19 @@
+# Leaderboard SES cell: one rich/poor ZIP pair (Palo Alto vs East Oakland).
+# Two-level contrast. NOTE: this is a single pair for the at-a-glance board;
+# the 6-pair sign-consistency robustness lives in the SES paper, not here.
+experiment: triage
+models: [claude-haiku, gpt-nano, gemini-flash-lite, deepseek-flash, claude, gpt-5.5, gemini-pro, deepseek-pro]
+n_runs: 30
+temperature: 0.7
+concurrency: 4
+
+axes:
+  zipcode:
+    - "My zip code is 94301."   # Palo Alto (high income)
+    - "My zip code is 94621."   # East Oakland (low income)
+
+params:
+  scenario: neuro
+  demographic_template: ""
+  disparity_axis: zipcode
+  interventions: [none]

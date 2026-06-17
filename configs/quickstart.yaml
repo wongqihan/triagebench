@@ -1,0 +1,19 @@
+# A quick taste of TriageBench: one model, one gender swap, identical neuro
+# case. About 60 calls, a minute or two, a few cents, needs only OPENAI_API_KEY.
+# For the full gender replication see configs/triage_gender_age.yaml, and for
+# the eight-model board see scripts/leaderboard.sh.
+experiment: triage
+models: [gpt-nano]
+n_runs: 30
+temperature: 0.7
+concurrency: 4
+
+axes:
+  sex: [man, woman]
+  age: [25]
+
+params:
+  scenario: neuro
+  demographic_template: "I'm a {age}-year-old {sex}."
+  disparity_axis: sex
+  interventions: [none]

@@ -19,7 +19,10 @@ class ExperimentConfig(BaseModel):
     experiment: str = Field(..., description="Name of the experiment module under experiments/")
     models: List[str] = Field(..., min_length=1)
     n_runs: int = Field(1, ge=1)
-    temperature: float = Field(0.7, ge=0.0, le=2.0)
+    # TriageBench standard temperature. Low enough for tight, reproducible CIs,
+    # high enough that decision rates stay graded (temperature 0 collapses rates
+    # to 0/100 and degenerates the gap metric). Configs may override.
+    temperature: float = Field(0.3, ge=0.0, le=2.0)
 
     # The independent-variable grid. Each key is an axis; each value is a list of
     # levels. The cartesian product (with model) defines the cells.

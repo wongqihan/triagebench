@@ -40,6 +40,15 @@ class ModelSpec:
     api_model: str
     max_tokens: int = 2048
     extra: Dict[str, Any] = field(default_factory=dict)
+    # Newest-generation models (e.g. Opus 4.8/4.7, Fable 5) removed the sampling
+    # parameters: sending `temperature` returns a 400. Set False for those so the
+    # adapter omits it. Defaults True for every model that still accepts it.
+    supports_temperature: bool = True
+    # base_url + api_key_env let the openai adapter target any OpenAI-compatible
+    # endpoint (DeepSeek, Together, Fireworks, local vLLM). Leave unset for the
+    # vendor's default endpoint and standard key env var.
+    base_url: Optional[str] = None
+    api_key_env: Optional[str] = None
 
 
 def _load_registry() -> Dict[str, ModelSpec]:
@@ -63,12 +72,17 @@ def _load_registry() -> Dict[str, ModelSpec]:
                     api_model=spec["api_model"],
                     max_tokens=spec.get("max_tokens", 2048),
                     extra=spec.get("extra", {}),
+                    supports_temperature=spec.get("supports_temperature", True),
+                    base_url=spec.get("base_url"),
+                    api_key_env=spec.get("api_key_env"),
                 )
                 for alias, spec in raw.items()
             }
     # Fallback so the library works without a models.yaml.
     return {
-        "claude": ModelSpec("anthropic", "claude-opus-4-8", max_tokens=2048),
+        "claude": ModelSpec(
+            "anthropic", "claude-opus-4-8", max_tokens=2048, supports_temperature=False
+        ),
         "gpt": ModelSpec("openai", "gpt-5.4-mini", max_tokens=2048),
         "gemini": ModelSpec("google", "gemini-3.5-flash", max_tokens=2048),
     }
@@ -129,9 +143,10 @@ def _anthropic(messages, system, spec: ModelSpec, temperature, cap) -> Completio
     kwargs: Dict[str, Any] = dict(
         model=spec.api_model,
         max_tokens=cap,
-        temperature=temperature,
         messages=messages,
     )
+    if spec.supports_temperature:
+        kwargs["temperature"] = temperature
     if system:
         kwargs["system"] = system
     kwargs.update(spec.extra)  # e.g. extended thinking config
@@ -161,15 +176,21 @@ def _anthropic(messages, system, spec: ModelSpec, temperature, cap) -> Completio
 def _openai(messages, system, spec: ModelSpec, temperature, cap) -> Completion:
     from openai import OpenAI  # official SDK
 
-    client = OpenAI(api_key=os.environ["OPENAI_API_KEY"], timeout=REQUEST_TIMEOUT_S)
+    client = OpenAI(
+        api_key=os.environ[spec.api_key_env or "OPENAI_API_KEY"],
+        base_url=spec.base_url,  # None -> default OpenAI endpoint
+        timeout=REQUEST_TIMEOUT_S,
+    )
     full_messages = ([{"role": "system", "content": system}] if system else []) + messages
-    resp = client.chat.completions.create(
+    oai_kwargs: Dict[str, Any] = dict(
         model=spec.api_model,
         messages=full_messages,
-        temperature=temperature,
         max_completion_tokens=cap,
         **spec.extra,
     )
+    if spec.supports_temperature:
+        oai_kwargs["temperature"] = temperature
+    resp = client.chat.completions.create(**oai_kwargs)
     choice = resp.choices[0].message
     usage = {}
     if resp.usage:
@@ -203,7 +224,7 @@ def _google(messages, system, spec: ModelSpec, temperature, cap) -> Completion:
         contents.append({"role": role, "parts": [{"text": m["content"]}]})
 
     config = types.GenerateContentConfig(
-        temperature=temperature,
+        temperature=temperature if spec.supports_temperature else None,
         max_output_tokens=cap,
         system_instruction=system or None,
     )

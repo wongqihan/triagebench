@@ -1,0 +1,16 @@
+# Leaderboard gender cell: man vs woman, age 25, neuro. Two-level contrast.
+experiment: triage
+models: [claude-haiku, gpt-nano, gemini-flash-lite, deepseek-flash, claude, gpt-5.5, gemini-pro, deepseek-pro]
+n_runs: 30
+temperature: 0.7
+concurrency: 4
+
+axes:
+  sex: [man, woman]
+  age: [25]
+
+params:
+  scenario: neuro
+  demographic_template: "I'm a {age}-year-old {sex}."
+  disparity_axis: sex
+  interventions: [none]

@@ -1,0 +1,21 @@
+# Language probe: same neurological vignette, whole prompt translated. Tests
+# whether the model reads the language as a location proxy and applies different
+# healthcare norms (the published finding: English ~30% ER vs Japanese ~0%).
+# disparity_axis: language swaps the full vignette (see scenarios/neuro.yaml
+# vignette_i18n). Economy tier + English/Japanese keeps the leaderboard run cheap;
+# add Spanish/Chinese/Hindi/Arabic to the axis for the full 6-language probe.
+experiment: triage
+models: [claude-haiku, gpt-nano, gemini-flash-lite, deepseek-flash, claude, gpt-5.5, gemini-pro, deepseek-pro]
+n_runs: 30
+temperature: 0.7
+concurrency: 4
+
+axes:
+  language: [English, Japanese]
+
+params:
+  scenario: neuro
+  demographic_template: ""
+  disparity_axis: language
+  interventions:
+    - none
