@@ -179,6 +179,8 @@ class TriageExperiment:
                 "domain": "clinical",
                 "axis": axis,
                 "ceteris_gap": round(gap, 4),
+                "rates": {lvl: round(pn[0], 4) for lvl, pn in levels.items()},
+                "higher": max(levels.items(), key=lambda kv: kv[1][0])[0],
                 "ci": [round(lo, 4), round(hi, 4)],
                 "p_value": p_value,
                 "n_per_level": per_level_n,
