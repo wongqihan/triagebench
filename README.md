@@ -2,6 +2,8 @@
 
 TriageBench measures whether a clinical AI gives the **same triage decision** when you change something about the patient that shouldn't affect the answer: their gender, the language they wrote in, or a ZIP code. It holds the symptoms identical, swaps one irrelevant detail, and reports how far the decision moves. It scores consistency and makes no claim about which triage call is clinically correct.
 
+The test cases are also on Hugging Face: [datasets/wongqihan/triagebench](https://huggingface.co/datasets/wongqihan/triagebench).
+
 ## Run it
 
 ```bash
